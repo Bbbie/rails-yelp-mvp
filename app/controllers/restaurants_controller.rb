@@ -17,6 +17,7 @@ class RestaurantsController < ApplicationController
     else
       render :new
     end
+  end
 
   # A visitor can see the details of a restaurant, with all the reviews related to the restaurant.
   def show

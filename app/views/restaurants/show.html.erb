@@ -1,6 +1,33 @@
 <h1><%= @restaurant.name %></h1>
-
-<p><%= @restaurant.category %> restaurant</p>
+<p><%= @restaurant.category.capitalize %> Restaurant</p>
 <p>🚶‍♂️<%= @restaurant.address %> | 🤙 <%= @restaurant.phone_number %></p>
-
+<br>
+<p><strong>Reviews:</strong></p>
+<%= link_to "💬 Add a review", new_restaurant_review_path(@restaurant) %>
+<% if @restaurant.reviews.count == 0 %>
+  <p>🤭 no reviews here</p>
+<% else %>
+  <ul>
+    <% @restaurant.reviews.each do |review| %>
+    <li class="list-group-item">
+      <% if review.rating == 0 %>
+        <p>💩</p>
+      <% elsif review.rating == 1 %>
+        <p>⭐️</p>
+      <% elsif review.rating == 2 %>
+        <p>⭐️⭐️</p>
+      <% elsif review.rating == 3 %>
+        <p>⭐️⭐️⭐️</p>
+      <% elsif review.rating == 4 %>
+        <p>⭐️⭐️⭐️⭐️</p>
+      <% else %>
+        <p>⭐️⭐️⭐️⭐️⭐️</p>
+      <% end %>
+      <%= review.content %></li>
+    <% end %>
+  </ul>
+<% end %>
+<br>
+<br>
+<br>
 <%= link_to "< Back to restaurants", restaurants_path %>
