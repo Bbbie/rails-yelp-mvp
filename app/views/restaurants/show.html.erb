@@ -1,11 +1,24 @@
 <h1><%= @restaurant.name %></h1>
-<p><%= @restaurant.category.capitalize %> Restaurant</p>
+<p>
+<% if @restaurant.category == 'italian' %>
+  🍕 <%= @restaurant.category.capitalize %> Restaurant </p>
+<% elsif @restaurant.category == 'chinese' %>
+  🍜 <%= @restaurant.category.capitalize %> Restaurant </p>
+<% elsif @restaurant.category == 'japanese' %>
+ 🍙 <%= @restaurant.category.capitalize %> Restaurant </p>
+<% elsif @restaurant.category == 'french' %>
+   🥐 <%= @restaurant.category.capitalize %> Restaurant </p>
+<% else %>
+   🧇 <%= @restaurant.category.capitalize %> Restaurant </p>
+<% end %>
+
+
 <p>🚶‍♂️<%= @restaurant.address %> | 🤙 <%= @restaurant.phone_number %></p>
 <br>
 <p><strong>Reviews:</strong></p>
-<%= link_to "💬 Add a review", new_restaurant_review_path(@restaurant) %>
+<%= link_to "➕ Add a review", new_restaurant_review_path(@restaurant) %>
 <% if @restaurant.reviews.count == 0 %>
-  <p>🤭 no reviews here</p>
+  <p>👆 No reviews yet... Add the first!</p>
 <% else %>
   <ul>
     <% @restaurant.reviews.each do |review| %>
@@ -27,7 +40,5 @@
     <% end %>
   </ul>
 <% end %>
-<br>
-<br>
 <br>
 <%= link_to "< Back to restaurants", restaurants_path %>

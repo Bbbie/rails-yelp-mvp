@@ -9,7 +9,7 @@ class ReviewsController < ApplicationController
     # new review with content & rating
     @review = Review.new(review_params)
     # add a restaurant (id) as well
-    # @review.restaurant = @restaurant.id
+    # @review.restaurant_id = @restaurant.id
     @review.restaurant = @restaurant
     # then save
     if @review.save
